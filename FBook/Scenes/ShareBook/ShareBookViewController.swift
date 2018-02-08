@@ -13,12 +13,17 @@ class ShareBookViewController: BaseViewController {
     var presenter: ShareBookPresenter?
     var configurator: ShareBookConfiguratorImpl?
 
+    @IBOutlet weak var googleBookButton: UIButton!
+    @IBOutlet weak var internalBookButton: UIButton!
     @IBOutlet fileprivate weak var photosCollectionView: UICollectionView!
     @IBOutlet fileprivate weak var titleTextField: CustomTextField!
     @IBOutlet fileprivate weak var authorTextField: CustomTextField!
-    @IBOutlet fileprivate weak var categoryTextField: CustomTextField!
-    @IBOutlet fileprivate weak var publishDateTextField: CustomTextField!
-    @IBOutlet fileprivate weak var officeTextField: CustomTextField!
+    @IBOutlet weak var categoryTextField: CustomTextField!
+    @IBOutlet weak var publishDateTextField: CustomTextField!
+    @IBOutlet weak var officeTextField: CustomTextField!
+    @IBOutlet weak var categoryButton: UIButton!
+    @IBOutlet weak var publishDataButton: UIButton!
+    @IBOutlet weak var officeButton: UIButton!
     @IBOutlet fileprivate weak var collectionViewHeightConstraint: NSLayoutConstraint!
 
     override func viewDidLoad() {
@@ -46,6 +51,18 @@ class ShareBookViewController: BaseViewController {
     @IBAction func officeTextFieldTapped(_ sender: Any) {
     	presenter?.displaySelectItems(type: .office)
     }
+
+    @IBAction func googleBookTapped(_ sender: Any) {
+        presenter?.didSelectedGoogleBookButton()
+    }
+
+    @IBAction func internalBookTapped(_ sender: Any) {
+        presenter?.didSelectedInternalBookButton()
+    }
+    @IBAction func createBookTapped(_ sender: Any) {
+        
+    }
+    
 }
 
 extension ShareBookViewController: ShareBookView {
@@ -66,4 +83,13 @@ extension ShareBookViewController: ShareBookView {
         Utility.shared.showActionSheet(in: self, actions: openCameraAction, openPhotoLibraryAction)
     }
 
+    func updateBackgroundInternalButton() {
+        self.internalBookButton.backgroundColor = UIColor.red.withAlphaComponent(1.0)
+        self.googleBookButton.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+    }
+
+    func updateBackgroundGoogleButton() {
+        self.googleBookButton.backgroundColor = UIColor.red.withAlphaComponent(1.0)
+        self.internalBookButton.backgroundColor = UIColor.red.withAlphaComponent(0.5)
+    }
 }

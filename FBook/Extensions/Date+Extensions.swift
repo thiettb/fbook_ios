@@ -39,4 +39,10 @@ extension Date {
         dateFormat.dateFormat = kDateServerFormat
         return dateFormat.string(from: self)
     }
+    
+    func toSeverStringkDateFormatYMD() -> String {
+        let dateFormat = DateFormatter()
+        dateFormat.dateFormat = kDateFormatYMD
+        return dateFormat.string(from: self)
+    }
 }

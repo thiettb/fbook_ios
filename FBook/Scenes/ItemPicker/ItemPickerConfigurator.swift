@@ -17,14 +17,15 @@ protocol ItemPickerConfigurator {
 class ItemPickerConfiguratorImpl: ItemPickerConfigurator {
 
     let items: [String]
-
-    init(items: [String]) {
+    weak var delegate: ItemPickerPresenterDelegate?
+    init(items: [String], delegate: ItemPickerPresenterDelegate?) {
         self.items = items
+        self.delegate = delegate
     }
 
     func configure(viewController: ItemPickerViewController) {
         let router = ItemPickerViewRouterImpl(viewController: viewController)
-        let presenter = ItemPickerPresenterImpl(view: viewController, router: router, items: items)
+        let presenter = ItemPickerPresenterImpl(view: viewController, router: router, items: items, delegate: delegate)
         viewController.presenter = presenter
     }
 

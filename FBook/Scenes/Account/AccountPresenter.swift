@@ -273,4 +273,8 @@ extension AccountPresenterImplementation: ProfileCellDelegate {
     func didSelectPersonal() {
         router?.showPersonal()
     }
+    
+    func didSelectShare() {
+        router?.showShare()
+    }
 }

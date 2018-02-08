@@ -12,6 +12,7 @@ import UIKit
 protocol AccountRouter {
     func showUserDetail(_ user: User)
     func showPersonal()
+    func showShare()
 }
 
 class AccountRouterImplementation: AccountRouter {
@@ -36,5 +37,13 @@ class AccountRouterImplementation: AccountRouter {
         let personalViewController = PersonalViewController()
         personalViewController.hidesBottomBarWhenPushed = true
         self.viewController?.navigationController?.pushViewController(personalViewController, animated: true)
+    }
+    
+    func showShare(){
+        guard let shareBook = UIStoryboard.shareBook.instantiateViewController(withIdentifier: "ShareBookViewController") as? ShareBookViewController else {
+            return
+        }
+        shareBook.hidesBottomBarWhenPushed = true
+        self.viewController?.navigationController?.pushViewController(shareBook, animated: true)
     }
 }

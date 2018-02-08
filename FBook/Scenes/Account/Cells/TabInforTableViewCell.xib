@@ -22,7 +22,7 @@
                 <subviews>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iQL-72-4Fu" customClass="CustomActivityButton" customModule="FBook" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="79" height="113.5"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" image="ic_activities"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mhL-d7-lw9">
@@ -34,7 +34,7 @@
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="f0i-dY-Px7" customClass="CustomActivityButton" customModule="FBook" customModuleProvider="target">
                         <rect key="frame" x="80" y="0.0" width="79.5" height="115"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="Button" image="ic_activities"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qA5-FX-Db8">
@@ -46,12 +46,12 @@
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N5E-6C-JB7" customClass="CustomActivityButton" customModule="FBook" customModuleProvider="target">
                         <rect key="frame" x="160.5" y="0.0" width="79" height="115"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="Button" image="ic_activities"/>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xqr-uh-2rG" customClass="CustomActivityButton" customModule="FBook" customModuleProvider="target">
                         <rect key="frame" x="240.5" y="0.0" width="79" height="115"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="Button" image="ic_activities"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TNI-z1-aY9">
@@ -64,7 +64,7 @@
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VP8-ku-Dl7" customClass="CustomActivityButton" customModule="FBook" customModuleProvider="target">
                         <rect key="frame" x="319.5" y="0.0" width="79" height="115"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                         <state key="normal" title="Button" image="ic_activities"/>
                     </button>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UUf-1X-H3v">

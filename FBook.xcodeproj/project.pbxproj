@@ -182,6 +182,7 @@
 		86556B83202853C6008BFB2F /* PersonalRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86556B82202853C6008BFB2F /* PersonalRouter.swift */; };
 		86556B8820285767008BFB2F /* PersonalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86556B8620285767008BFB2F /* PersonalViewController.swift */; };
 		86556B8920285767008BFB2F /* PersonalViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86556B8720285767008BFB2F /* PersonalViewController.xib */; };
+		86CC7A41202D395000E51ACC /* ShareBookParams.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86CC7A40202D395000E51ACC /* ShareBookParams.swift */; };
 		CC0F5DF9202BF12F00B24CCB /* BookActivities.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC0F5DF8202BF12F00B24CCB /* BookActivities.storyboard */; };
 		CC0F5DFB202BF94D00B24CCB /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F5DFA202BF94D00B24CCB /* PageViewController.swift */; };
 		CC0F5DFD202BFA5100B24CCB /* BookActivitiesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0F5DFC202BFA5100B24CCB /* BookActivitiesViewController.swift */; };
@@ -429,6 +430,7 @@
 		86556B82202853C6008BFB2F /* PersonalRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalRouter.swift; sourceTree = "<group>"; };
 		86556B8620285767008BFB2F /* PersonalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonalViewController.swift; sourceTree = "<group>"; };
 		86556B8720285767008BFB2F /* PersonalViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PersonalViewController.xib; sourceTree = "<group>"; };
+		86CC7A40202D395000E51ACC /* ShareBookParams.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareBookParams.swift; sourceTree = "<group>"; };
 		8B0C30664FE5265A54D7B243 /* Pods_FBookUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBookUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		93B87F1A25FE163B3B4DFFD4 /* Pods_FBook.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_FBook.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B25D5DC6B1ED2B28EAB4D7AC /* Pods-FBookTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-FBookTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-FBookTests/Pods-FBookTests.release.xcconfig"; sourceTree = "<group>"; };
@@ -571,6 +573,7 @@
 				7741DAA31F85C29100FFE1C0 /* FilterSortBookParams.swift */,
 				117162B51F6B89600045A59E /* BookingBookParams.swift */,
 				118038481F6F9EBE00945648 /* ApproveBookParams.swift */,
+				86CC7A40202D395000E51ACC /* ShareBookParams.swift */,
 			);
 			path = RequestModels;
 			sourceTree = "<group>";
@@ -1020,6 +1023,13 @@
 			path = BaseController;
 			sourceTree = "<group>";
 		};
+		8648412D202AE06E001B34B0 /* ShareBook */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ShareBook;
+			sourceTree = "<group>";
+		};
 		86556B6B20282E25008BFB2F /* Personal */ = {
 			isa = PBXGroup;
 			children = (
@@ -1063,6 +1073,7 @@
 		D58C70581F75031C0059D3BE /* Account */ = {
 			isa = PBXGroup;
 			children = (
+				8648412D202AE06E001B34B0 /* ShareBook */,
 				86556B6B20282E25008BFB2F /* Personal */,
 				D58C70631F75054A0059D3BE /* Cells */,
 				D58C70591F75035F0059D3BE /* Account.storyboard */,
@@ -1361,7 +1372,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		6BA7FB357913453C8E850BE5 /* [CP] Copy Pods Resources */ = {
@@ -1407,7 +1418,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		874F2F142A4FA15E1EF23A06 /* [CP] Embed Pods Frameworks */ = {
@@ -1496,7 +1507,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1586,6 +1597,7 @@
 				22C480631F6043F800DB7A4C /* BaseProvider.swift in Sources */,
 				7712B09A1F7B4178001C8D9C /* PickerTableViewCell.swift in Sources */,
 				CC0F5E01202C282B00B24CCB /* UserWaitingViewController.swift in Sources */,
+				86CC7A41202D395000E51ACC /* ShareBookParams.swift in Sources */,
 				86556B692027FF70008BFB2F /* ProfilCell.swift in Sources */,
 				11361F141F7A4AEE00125108 /* NoDataView.swift in Sources */,
 				CC0F5E0E202C310600B24CCB /* UIViewController+Extention.swift in Sources */,

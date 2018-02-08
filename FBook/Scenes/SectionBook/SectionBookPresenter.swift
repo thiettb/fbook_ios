@@ -64,12 +64,14 @@ class SectionBookPresenterImplementation: NSObject {
             }
             weakSelf.router?.showCategoryPicker(delegate: weakSelf, currentCategory: weakSelf.category.value)
         }).disposed(by: disposeBag)
+
         sortButton.rx.tap.subscribe(onNext: { [weak self] in
             guard let weakSelf = self else {
                 return
             }
             weakSelf.router?.showSortBook(delegate: weakSelf, currentSort: weakSelf.sort.value)
         }).disposed(by: disposeBag)
+
         orderButton.rx.tap.subscribe(onNext: { [weak self] in
             guard let weakSelf = self else {
                 return
@@ -77,10 +79,12 @@ class SectionBookPresenterImplementation: NSObject {
             weakSelf.orderBy.invert()
             weakSelf.refreshing()
         }).disposed(by: disposeBag)
+
         // Observable when variable change value
         category.asObservable().map { category in
             return category?.name ?? "All"
         }.bind(to: categoryButton.rx.title()).disposed(by: disposeBag)
+
         sort.asObservable().map { sort in
             return sort.getTitle()
         }.bind(to: sortButton.rx.title()).disposed(by: disposeBag)

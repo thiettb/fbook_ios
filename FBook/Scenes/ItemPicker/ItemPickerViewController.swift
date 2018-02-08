@@ -60,6 +60,11 @@ class ItemPickerViewController: UIViewController {
             self.dismiss(animated: false, completion: nil)
         }
     }
+    
+    @IBAction func doneTapped(_ sender: Any) {
+        presenter?.didSelectDate(date: datePicker.date)
+        self.dismiss(animated: false, completion: nil)
+    }
 }
 
 // MARK: - ItemPickerView
@@ -67,3 +72,4 @@ class ItemPickerViewController: UIViewController {
 extension ItemPickerViewController: ItemPickerView {
 
 }
+

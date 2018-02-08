@@ -32,8 +32,7 @@ final class BookProvider: BaseProvider {
         return requestJSON(api: .getBookInSection(officeId, page, section)).flatMap(.merge, mapBookList)
     }
 
-    static func getBooksFilterSort( params: FilterSortBookParams,
-                                   page: Int, officeId: Int?) -> BookListSignal {
+    static func getBooksFilterSort( params: FilterSortBookParams, page: Int, officeId: Int?) -> BookListSignal {
         return requestJSON(api: .getBookFilterSortInSection(officeId, page, params))
             .flatMap(.merge, mapBookList)
     }
@@ -56,6 +55,10 @@ final class BookProvider: BaseProvider {
 
     static func reviewBook(bookId: Int, review: Review) -> BooleanSignal {
         return requestJSON(api: .reviewBook(bookId, review)).flatMap(.merge, mapBoolean)
+    }
+    
+    static func shareBook(title: String, description: String?, author: String, publishDate: Date?, categoryId: Int?, officeId: Int?, medias: [Medias]) -> BooleanSignal {
+        return requestJSON(api: .shareBook(title, description, author, publishDate, categoryId, officeId, medias)).flatMap(.merge, mapBoolean)
     }
 
     fileprivate static let mapBookList = { (object: ObjectResponse?) -> BookListSignal in

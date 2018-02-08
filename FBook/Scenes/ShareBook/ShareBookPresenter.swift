@@ -7,8 +7,12 @@
 //
 
 import UIKit
+import Foundation
 import Photos
 import QBImagePickerController
+import ReactiveSwift
+import RxSwift
+import RxCocoa
 
 enum ItemType {
 
@@ -20,9 +24,16 @@ enum ItemType {
 
 protocol ShareBookView: class {
 
+    weak var categoryButton: UIButton! { get }
+    weak var publishDataButton: UIButton! { get }
+    weak var officeButton: UIButton! { get }
+    weak var categoryTextField: CustomTextField! { get }
+    weak var publishDateTextField: CustomTextField! { get }
+    weak var officeTextField: CustomTextField! { get }
     func updateUI()
     func displayChooseImageSourceDialog()
-
+    func updateBackgroundInternalButton()
+    func updateBackgroundGoogleButton()
 }
 
 protocol ShareBookPresenter {
@@ -33,24 +44,73 @@ protocol ShareBookPresenter {
     func openPhotoLibrary()
     func displaySelectItems(type: ItemType)
     func prepare(for segue: UIStoryboardSegue, sender: Any?)
-
+    func didSelectedInternalBookButton()
+    func didSelectedGoogleBookButton()
+    func didCreateBookButton(title: String, description: String?, author: String, publishDate: Date?, categoryID: Int?, officeID: Int?, medias: [Medias])
 }
 
 class ShareBookPresenterImpl: NSObject {
 
     private(set) var router: ShareBookViewRouter?
     fileprivate weak var view: ShareBookView?
-
+    fileprivate var category = Variable<Category?>(nil)
+    fileprivate let disposeBag = DisposeBag()
+    fileprivate var publishDate = Variable<Date?>(nil)
+    fileprivate var office = Variable<Office?>(nil)
+    
     var photos = [UIImage]()
     let numberOfCells: CGFloat = 2.0
     let photoRatio: CGFloat = 3.0 / 4.0
     var cellWidth: CGFloat = 0.0
     var cellHeight: CGFloat = 0.0
-    var currentItemType = ItemType.category
+    var categoryItemType = ItemType.category
+    var publishDateItemType = ItemType.publishDate
+    var officeItemType = ItemType.office
 
     init(view: ShareBookView, router: ShareBookViewRouter) {
         self.view = view
         self.router = router
+        super.init()
+        guard let categoryTextField = view.categoryTextField, let categoryButton = view.categoryButton else {
+            return
+        }
+        guard let publishDateTextField = view.publishDateTextField, let publishDateButton = view.publishDataButton else {
+            return
+        }
+        guard let officeTextField = view.officeTextField, let officeButton = view.officeButton else {
+            return
+        }
+
+        categoryButton.rx.tap.asObservable().subscribe(onNext: { [weak self] in guard let weakSelf = self else {
+                return
+            }
+            weakSelf.router?.showCategoryPicker(delegate: weakSelf, currentCategory: weakSelf.category.value)
+        }).disposed(by: disposeBag)
+
+        publishDateButton.rx.tap.asObservable().subscribe(onNext: { [weak self] in guard let weakSelf = self else {
+                return
+            }
+            weakSelf.router?.showPickerView(delegate: weakSelf)
+        }).disposed(by: disposeBag)
+
+        officeButton.rx.tap.asObservable().subscribe(onNext: { [weak self] in guard let weakSelf = self else {
+                return
+            }
+            weakSelf.router?.showOffice(delegate: weakSelf, currentOffice: weakSelf.office.value)
+        }).disposed(by: disposeBag)
+
+        //asObservable
+        category.asObservable().map { category in
+            return category?.name
+            }.bind(to: categoryTextField.rx.text).disposed(by: disposeBag)
+
+        publishDate.asObservable().map { date in
+            return date?.toSeverStringkDateFormatYMD()
+        }.bind(to: publishDateTextField.rx.text).disposed(by: disposeBag)
+
+        office.asObservable().map { (office) in
+            return office?.name
+        }.bind(to: officeTextField.rx.text).disposed(by: disposeBag)
     }
 
     fileprivate func displayChooseImageSourceDialog() {
@@ -100,23 +160,32 @@ extension ShareBookPresenterImpl: ShareBookPresenter {
     }
 
     func displaySelectItems(type: ItemType) {
-        currentItemType = type
-        router?.performSegue(withIdentifier: "selectItems")
-    }
-
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let itemPickerViewController = segue.destination as? ItemPickerViewController {
-            // TODO: Add items
-            let items: [String] = []
-            switch currentItemType {
-            case .category: break
-            case .publishDate: break
-            case .office: break
-            }
-            itemPickerViewController.configurator = ItemPickerConfiguratorImpl(items: items)
+        switch type {
+        case .category:
+            break
+        case .office:
+            break
+        case .publishDate:
+            break
         }
     }
 
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    }
+
+    func didSelectedInternalBookButton() {
+        view?.updateBackgroundInternalButton()
+        //
+    }
+
+    func didSelectedGoogleBookButton() {
+        view?.updateBackgroundGoogleButton()
+        //
+    }
+    
+    func didCreateBookButton(title: String, description: String?, author: String, publishDate: Date?, categoryID: Int?, officeID: Int?, medias: [Medias]) {
+        
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -210,9 +279,25 @@ extension ShareBookPresenterImpl: QBImagePickerControllerDelegate {
 // MARK: - UITextFieldDelegate
 
 extension ShareBookPresenterImpl: UITextFieldDelegate {
-
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return false
     }
+}
 
+extension ShareBookPresenterImpl: CategoryPickerPresenterDelegate {
+    func categoryPickerPresenter(didSelect category: Category?) {
+        self.category.value = category
+    }
+}
+
+extension ShareBookPresenterImpl: ChooseWorkspacePresenterDelegate {
+    func didSelect(office: Office?) {
+        self.office.value = office
+    }
+}
+
+extension ShareBookPresenterImpl: ItemPickerPresenterDelegate {
+    func didSelect(didSelect picker: Date?) {
+        self.publishDate.value = picker
+    }
 }

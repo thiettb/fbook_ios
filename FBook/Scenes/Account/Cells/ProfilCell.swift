@@ -10,6 +10,7 @@ import UIKit
 
 protocol ProfileCellDelegate: NSObjectProtocol {
     func didSelectPersonal()
+    func didSelectShare()
 }
 
 class ProfilCell: UITableViewCell {
@@ -24,13 +25,13 @@ class ProfilCell: UITableViewCell {
 
     }
     @IBAction func pressPersonal(_ sender: UIButton) {
-      self.delegate?.didSelectPersonal()
+        self.delegate?.didSelectPersonal()
     }
 
     @IBAction func pressApproved(_ sender: UIButton) {
     }
     @IBAction func pressShare(_ sender: UIButton) {
-
+        self.delegate?.didSelectShare()
     }
 
     @IBAction func pressSetting(_ sender: UIButton) {
